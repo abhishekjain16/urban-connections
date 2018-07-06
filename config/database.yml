@@ -48,6 +48,4 @@ test:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
 production:
-  <<: *default
-  database: urban_connections_production
   password: <%= ENV['DATABASE_URL'] %>
