@@ -50,5 +50,4 @@ test:
 production:
   <<: *default
   database: urban_connections_production
-  username: urban_connections
-  password: <%= ENV['URBAN_CONNECTIONS_DATABASE_PASSWORD'] %>
+  password: <%= ENV['DATABASE_URL'] %>
