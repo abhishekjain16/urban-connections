@@ -1,6 +1,6 @@
 {
   "name": "frontend",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "scripts": {
     "ng": "ng",
     "build": "ng build",
@@ -24,6 +24,9 @@
     "core-js": "^2.5.4",
     "rxjs": "^6.0.0",
     "zone.js": "^0.8.26"
+  },
+  "engines": {
+    "node": "10.1.0"
   },
   "devDependencies": {
     "@angular/compiler-cli": "^6.0.3",
