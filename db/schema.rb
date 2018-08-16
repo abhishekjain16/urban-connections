@@ -10,19 +10,79 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_06_021714) do
+ActiveRecord::Schema.define(version: 2018_08_12_224742) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "businesses", force: :cascade do |t|
+    t.string "name"
+    t.float "minimum_order_charge", default: 0.0
+    t.float "service_charge", default: 0.0
+    t.string "website"
+    t.bigint "owner_id"
+    t.boolean "status", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["owner_id"], name: "index_businesses_on_owner_id"
+  end
+
+  create_table "order_items", force: :cascade do |t|
+    t.bigint "order_id"
+    t.string "name"
+    t.float "price", default: 0.0
+    t.integer "quantity"
+    t.string "instructions"
+    t.bigint "service_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["order_id"], name: "index_order_items_on_order_id"
+    t.index ["service_id"], name: "index_order_items_on_service_id"
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.float "total", default: 0.0
+    t.bigint "business_id"
+    t.bigint "address_id"
+    t.float "visitCharges", default: 0.0
+    t.float "tax", default: 0.0
+    t.string "status"
+    t.float "sub_total", default: 0.0
+    t.bigint "customer_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["address_id"], name: "index_orders_on_address_id"
+    t.index ["business_id"], name: "index_orders_on_business_id"
+    t.index ["customer_id"], name: "index_orders_on_customer_id"
+  end
+
+  create_table "services", force: :cascade do |t|
+    t.bigint "business_id"
+    t.string "name"
+    t.float "price", default: 0.0
+    t.string "duration"
+    t.string "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["business_id"], name: "index_services_on_business_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
-    t.string "password"
+    t.string "password_digest"
     t.string "username"
     t.string "email"
+    t.boolean "status", default: true
+    t.string "type"
+    t.string "gender"
+    t.string "phone"
+    t.string "designation"
+    t.string "age"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "access_token"
+    t.index ["access_token"], name: "index_users_on_access_token", unique: true
   end
 
 end
