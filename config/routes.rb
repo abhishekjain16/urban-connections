@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   namespace :api do
     defaults format: :json do
       resources :users
-      resources :business, only: [:create]
+      resources :business, only: [:create, :index, :show]
       controller :sessions do
         post 'sign_in' => :create
         delete 'sign_out' => :destroy

@@ -10,12 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_12_224742) do
+ActiveRecord::Schema.define(version: 2018_08_17_021642) do
 
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
+  create_table "addresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "street"
+    t.string "street2"
+    t.string "city"
+    t.string "state"
+    t.string "zipcode"
+    t.bigint "customer_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["customer_id"], name: "index_addresses_on_customer_id"
+  end
 
-  create_table "businesses", force: :cascade do |t|
+  create_table "businesses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
     t.float "minimum_order_charge", default: 0.0
     t.float "service_charge", default: 0.0
@@ -27,7 +36,7 @@ ActiveRecord::Schema.define(version: 2018_08_12_224742) do
     t.index ["owner_id"], name: "index_businesses_on_owner_id"
   end
 
-  create_table "order_items", force: :cascade do |t|
+  create_table "order_items", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "order_id"
     t.string "name"
     t.float "price", default: 0.0
@@ -40,7 +49,7 @@ ActiveRecord::Schema.define(version: 2018_08_12_224742) do
     t.index ["service_id"], name: "index_order_items_on_service_id"
   end
 
-  create_table "orders", force: :cascade do |t|
+  create_table "orders", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.float "total", default: 0.0
     t.bigint "business_id"
     t.bigint "address_id"
@@ -56,7 +65,7 @@ ActiveRecord::Schema.define(version: 2018_08_12_224742) do
     t.index ["customer_id"], name: "index_orders_on_customer_id"
   end
 
-  create_table "services", force: :cascade do |t|
+  create_table "services", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "business_id"
     t.string "name"
     t.float "price", default: 0.0
@@ -67,7 +76,7 @@ ActiveRecord::Schema.define(version: 2018_08_12_224742) do
     t.index ["business_id"], name: "index_services_on_business_id"
   end
 
-  create_table "users", force: :cascade do |t|
+  create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
     t.string "password_digest"

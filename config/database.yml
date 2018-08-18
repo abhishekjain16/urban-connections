@@ -15,7 +15,9 @@ default: &default
   pool: 5
 
 development:
-  <<: *default
+  adapter: mysql2
+  username: root
+  password:
   database: urban_connections_development
 
 # Warning: The database defined as "test" will be erased and

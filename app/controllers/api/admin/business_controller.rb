@@ -17,6 +17,7 @@ module Api
       end
 
       def show
+        @business = Business.where(id: params[:id]).first
         render json: @business
       end
 
