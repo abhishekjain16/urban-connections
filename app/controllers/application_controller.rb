@@ -3,10 +3,7 @@ class ApplicationController < ActionController::API
   before_action :authenticate
 
   def current_user
-    puts request.headers['authentication']
     @current_user ||= authenticate_with_http_token do |token, options|
-      puts token
-      puts options
       User.active.find_by(access_token: token)
     end
   end

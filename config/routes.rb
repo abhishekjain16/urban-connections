@@ -15,6 +15,8 @@ Rails.application.routes.draw do
       end
 
       namespace :admin do
+        resources :users
+        resources :business
       end
 
       namespace :owner do

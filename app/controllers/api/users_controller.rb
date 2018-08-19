@@ -2,7 +2,13 @@ class Api::UsersController < ApplicationController
   skip_before_action :authenticate, only: [:create]
 
   def logged_in
-    render json: current_user
+    @user = current_user
+    render json: @user
+  end
+
+  def show
+    @user = User.find(params[:id])
+    render json: @user
   end
 
   def create
@@ -15,10 +21,11 @@ class Api::UsersController < ApplicationController
   end
 
   def update
-    if current_user.update(user_params)
+    @user = User.find(params[:id])
+    if @user.update(user_params)
       render json: @user      
     else
-      render json: { :errors => current_user.errors.full_messages }
+      render json: { :errors => @user.errors.full_messages }
     end
   end
 

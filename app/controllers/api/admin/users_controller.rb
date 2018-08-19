@@ -1,8 +1,6 @@
 module Api
   module Admin
-    class Api::UsersController < ApplicationController
-      skip_before_action :authenticate, only: [:create]
-
+    class UsersController < BaseController
       def show
         @user = User.find(params[:id])
         render json: @user
@@ -27,7 +25,7 @@ module Api
       end
 
       def index
-        @users = User.all
+        @users = User.where(type: params[:role])
         render json: @users
       end
 
