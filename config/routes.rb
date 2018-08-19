@@ -3,7 +3,11 @@ Rails.application.routes.draw do
 
   namespace :api do
     defaults format: :json do
-      resources :users
+      resources :users do
+        collection do
+          post :logged_in
+        end
+      end
       resources :business, only: [:create, :index, :show]
       controller :sessions do
         post 'sign_in' => :create
