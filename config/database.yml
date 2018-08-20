@@ -12,13 +12,14 @@
 default: &default
   adapter: postgresql
   encoding: utf8
-  pool: 5
+  pool: 25
 
 development:
   adapter: mysql2
   username: root
   password:
   database: urban_connections_development
+  pool: 25
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".

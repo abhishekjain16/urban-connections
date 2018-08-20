@@ -6,6 +6,7 @@ class Order < ApplicationRecord
   belongs_to :staff, optional: true
 
   has_secure_token :order_number
+  accepts_nested_attributes_for :address
 
   def reject!
     self.update_attributes(status: "rejected")

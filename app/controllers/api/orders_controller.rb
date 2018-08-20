@@ -14,6 +14,11 @@ class Api::OrdersController < ApplicationController
     end
   end
 
+  def all
+    @orders = current_user.orders
+    render json: @orders
+  end
+
   def index
     @orders = current_business.orders
     render json: @orders

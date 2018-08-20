@@ -11,11 +11,11 @@ class Api::OrderItemsController < ApplicationController
 
   def index
     @order_items = current_order.order_items
-    render json: @order_item
+    render json: @order_items
   end
 
   def update
-    @order_item = current_order.order_item.find(params[:id])
+    @order_item = current_order.order_items.find(params[:id])
     if @order_item.update(order_item_params)
       render json: @order_item      
     else

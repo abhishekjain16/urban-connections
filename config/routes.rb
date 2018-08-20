@@ -13,7 +13,7 @@ Rails.application.routes.draw do
           get 'owner' => :owner
           get 'yelp' => :yelp
           get 'reviews' => :reviews
-          get 'internal' => :internal
+          get 'my_business' => :my_business
         end
         resources :services, only: [:index]
         resources :orders do
@@ -24,6 +24,9 @@ Rails.application.routes.draw do
       end
 
       resources :orders, only: [] do
+        collection do
+          get 'all', :all
+        end
         resources :order_items
       end
 

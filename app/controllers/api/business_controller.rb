@@ -35,7 +35,7 @@ class Api::BusinessController < ApplicationController
     render json: @business.owner
   end
 
-  def internal
+  def my_business
     @business = Business.find(params[:id])
     render json: @business
   end
