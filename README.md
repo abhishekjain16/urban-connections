@@ -15,10 +15,14 @@ Command: npm install
 Step 3: ruby bundle
 Command: bundle
 
-Step 4: Run Ruby server
+Step 4: Database
+rake db:create to create database
+rake db:migrate to add all migrations
+
+Step 5: Run Ruby server
 Command: rails s
 
-Step 5: Run Nodejs server
+Step 6: Run Nodejs server
 Go to the root folder of project and type in command: ng serve
 Navigate to http://localhost:4200/
 
