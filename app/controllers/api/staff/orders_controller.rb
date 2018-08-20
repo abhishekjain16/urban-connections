@@ -8,7 +8,7 @@ module Api
       end
 
       def index
-        @orders = current_user.orders.where(business_id: params[:id])
+        @orders = current_user.orders
         render json: @orders
       end
 
@@ -20,11 +20,6 @@ module Api
         end
       end
 
-      def destroy
-        @order.reject!
-        render json: @order    
-      end
-
       private
 
       def order_params
@@ -32,7 +27,7 @@ module Api
       end
 
       def find_order
-        @order = current_user.orders.where(business_id: params[:id]).first
+        @order = current_user.orders.where(id: params[:id]).first
       end
     end
   end

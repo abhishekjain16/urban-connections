@@ -48,9 +48,7 @@ Rails.application.routes.draw do
       end
 
       namespace :staff do
-        resources :business do
-          resources :orders
-        end
+        resources :orders
       end
     end
   end
