@@ -1,4 +1,6 @@
 # README
+This repo is only for backend code.
+For front end code: https://github.com/abhishekjain16/urban-connections-frontend
 
 READ ME:
 The project uses AngularCLI for the front end ,rails for the backend and mysql for database.
