@@ -9,10 +9,10 @@ module Api
 
       def create
         @staff = current_business.staffs.build(staff_params)
-        if staff.save
+        if @staff.save
           render json: @staff    
         else
-          render json: { :errors => @staff.errors.full_messages }
+          render json: { :errors => @staff.errors.full_messages }, status: 422
         end
       end
 

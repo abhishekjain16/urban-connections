@@ -1,5 +1,5 @@
 class Api::BusinessController < ApplicationController
-  skip_before_action :authenticate, only: [:index, :show]
+  skip_before_action :authenticate
 
   def index
     @businesses = YelpService.search(term, location)
@@ -11,13 +11,33 @@ class Api::BusinessController < ApplicationController
     render json: @business
   end
 
+  def reviews
+    @reviews = YelpService.reviews(params[:id])
+    render json: @reviews
+  end
+
   def create
-    @business = current_user.businesses.build(business_params)
+    @business = Business.new(business_params)
     if @business.save
       render json: @business
     else
       render json: { :errors => @business.errors.full_messages }
     end
+  end
+
+  def yelp
+    @business = Business.find_by(yelp_id: params[:id])
+    render json: @business
+  end
+
+  def owner
+    @business = Business.find(params[:id])
+    render json: @business.owner
+  end
+
+  def internal
+    @business = Business.find(params[:id])
+    render json: @business
   end
 
   private

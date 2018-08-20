@@ -19,6 +19,12 @@ class YelpService
       response.parse
     end
 
+    def reviews(yelp_business_id)
+      url = "#{BASE_URL}/#{yelp_business_id}/reviews"
+      response = HTTP.auth("Bearer #{yelp_api_key}").get(url)
+      response.parse
+    end
+
     private
 
     def yelp_api_key

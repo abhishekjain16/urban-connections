@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_17_021642) do
+ActiveRecord::Schema.define(version: 2018_08_19_211325) do
 
   create_table "addresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "street"
@@ -33,6 +33,7 @@ ActiveRecord::Schema.define(version: 2018_08_17_021642) do
     t.boolean "status", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "yelp_id"
     t.index ["owner_id"], name: "index_businesses_on_owner_id"
   end
 
@@ -60,6 +61,8 @@ ActiveRecord::Schema.define(version: 2018_08_17_021642) do
     t.bigint "customer_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "staff_id"
+    t.string "order_number"
     t.index ["address_id"], name: "index_orders_on_address_id"
     t.index ["business_id"], name: "index_orders_on_business_id"
     t.index ["customer_id"], name: "index_orders_on_customer_id"
@@ -91,6 +94,7 @@ ActiveRecord::Schema.define(version: 2018_08_17_021642) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "access_token"
+    t.integer "business_id"
     t.index ["access_token"], name: "index_users_on_access_token", unique: true
   end
 

@@ -8,7 +8,25 @@ Rails.application.routes.draw do
           post :logged_in
         end
       end
-      resources :business, only: [:create, :index, :show]
+      resources :business, only: [:create, :index, :show] do
+        member do
+          get 'owner' => :owner
+          get 'yelp' => :yelp
+          get 'reviews' => :reviews
+          get 'internal' => :internal
+        end
+        resources :services, only: [:index]
+        resources :orders do
+          collection do
+            get 'last' => :last
+          end
+        end
+      end
+
+      resources :orders, only: [] do
+        resources :order_items
+      end
+
       controller :sessions do
         post 'sign_in' => :create
         delete 'sign_out' => :destroy
@@ -20,10 +38,16 @@ Rails.application.routes.draw do
       end
 
       namespace :owner do
-        resources :business, only: [:index, :show, :update]
+        resources :business, only: [:index, :show, :update] do
+          resources :services
+          resources :staffs
+        end
       end
 
       namespace :staff do
+        resources :business do
+          resources :orders
+        end
       end
     end
   end

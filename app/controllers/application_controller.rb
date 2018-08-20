@@ -10,7 +10,7 @@ class ApplicationController < ActionController::API
 
   def authenticate
     unless current_user
-      render json: { error: "You are not authorized", status: 403 }
+      render json: { error: "You are not authorized" }, status: 403
     end
   end
 end
