@@ -1,24 +1,27 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+READ ME:
+The project uses AngularCLI for the front end ,rails for the backend and mysql for database.
+So you need to have all three installed and running before executing the project.
 
-Things you may want to cover:
+Step 1:
+Git clone the project
 
-* Ruby version
+Step 2: Install npm, ruby and mysql if not installed.
 
-* System dependencies
+Step 3: Install npm modules 
+Command: npm install
 
-* Configuration
+Step 3: ruby bundle
+Command: bundle
 
-* Database creation
+Step 4: Run Ruby server
+Command: rails s
 
-* Database initialization
+Step 5: Run Nodejs server
+Go to the root folder of project and type in command: ng serve
+Navigate to http://localhost:4200/
 
-* How to run the test suite
 
-* Services (job queues, cache servers, search engines, etc.)
 
-* Deployment instructions
-
-* ...
+Make sure to replace your API_KEY from YELP to have data coming through.
